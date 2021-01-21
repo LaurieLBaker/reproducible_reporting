@@ -9,6 +9,9 @@ This repository contains the contents for two tutorials developed for the Data S
 
 # Reproducible reporting using Rmarkdown
 
+![](slides/images/rmarkdown_wizards_stats_adviser.png)
+Artwork by @AllisonHorst
+
 ## You
 
 * Have some familiarity with R. 
@@ -18,9 +21,6 @@ This repository contains the contents for two tutorials developed for the Data S
 * Are interested in creating reproducible reports.
 
 * Aspire to be a reproducibility wizard!
-
-![](slides/images/rmarkdown_wizards_stats_adviser.PNG)
-Artwork by @AllisonHorst
 
 ## Course Instructions
 
