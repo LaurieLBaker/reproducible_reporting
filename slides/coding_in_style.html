@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Coding in style</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="" />
+    <meta name="author" content="Dr. Laurie Baker" />
+    <meta name="date" content="2020-08-19" />
+    <link href="libs/countdown-0.3.5/countdown.css" rel="stylesheet" />
+    <script src="libs/countdown-0.3.5/countdown.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Coding in style
+## Data Science Campus, Office for National Statistics
+### 
+### Dr. Laurie Baker
+### 2020-08-19
+
+---
+
+
+
+
+
+
+---
+
+# You
+
+.pull_left[
+* Know how to code!
+
+* Collaborate with others and/or your past self on a regular basis.
+
+* Have not necessarily been trained in how to write "good code". 
+]
+.pull-right[
+
+
+]
+---
+
+
+# Coding style
+
+&gt;"Good coding style is like correct punctuation: you can manage without it, butitsuremakesthingseasiertoread"
+
+&gt; Hadley Wickham
+
+???
+
+---
+# dumpster or Dumpster?
+
+* What do the New York Times, daily mail, and good coders have in common?
+
+&lt;p style="font-size: 0.9rem;font-style: italic;"&gt;&lt;img style="display: block;" src="https://live.staticflickr.com/7299/13098098485_fc416664e7_b.jpg" alt="dumpster"&gt;&lt;a href="https://www.flickr.com/photos/33378239@N00/13098098485"&gt;"dumpster"&lt;/a&gt;&lt;span&gt; by &lt;a href="https://www.flickr.com/photos/33378239@N00"&gt;kendrak&lt;/a&gt;&lt;/span&gt; is licensed under &lt;a href="https://creativecommons.org/licenses/by-nc-sa/2.0/?ref=ccsearch&amp;atype=html" style="margin-right: 5px;"&gt;CC BY-NC-SA 2.0&lt;/a&gt;&lt;a href="https://creativecommons.org/licenses/by-nc-sa/2.0/?ref=ccsearch&amp;atype=html" target="_blank" rel="noopener noreferrer" style="display: inline-block;white-space: none;margin-top: 2px;margin-left: 3px;height: 22px !important;"&gt;&lt;img style="height: inherit;margin-right: 3px;display: inline-block;" src="https://search.creativecommons.org/static/img/cc_icon.svg" /&gt;&lt;img style="height: inherit;margin-right: 3px;display: inline-block;" src="https://search.creativecommons.org/static/img/cc-by_icon.svg" /&gt;&lt;img style="height: inherit;margin-right: 3px;display: inline-block;" src="https://search.creativecommons.org/static/img/cc-nc_icon.svg" /&gt;&lt;img style="height: inherit;margin-right: 3px;display: inline-block;" src="https://search.creativecommons.org/static/img/cc-sa_icon.svg" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+--
+
+* They all use style guides.
+
+???
+
+Conversations about style in the newsroom can involve something as simple as the decapitalization of “dumpster” (thanks to the loss of a trademark), or as complex as a word like Brexit. 
+
+---
+# Style guides
+
+* A set of rules about style. 
+
+--
+
+* All style guides are fundamentally opinionated.
+
+--
+
+* Some decisions do make code easier to use (e.g. matching indenting to programming structure), but many are arbitrary.
+
+--
+
+* Most importantly a style guide provides **consistency**.
+
+--
+
+* It makes code easier to write because you need to make fewer decisions. 
+
+---
+# R style guides 
+
+* [Tidyverse Style Guide](https://style.tidyverse.org/index.html); [Google R Style Guide](https://google.github.io/styleguide/Rguide.html) (forked from the Tidyverse style guide). 
+
+--
+
+**Tidyverse Style Guide**
+
+* **Files:** Names, Organisation, and Internal Structure.
+
+--
+
+* **Syntax** Object names, Spacing, Function calls, Control flow, Long lines, Semicolons, Assignment, Data, Comments. 
+
+--
+
+* **Functions** Naming, Long lines, return(), Comments
+
+--
+
+* **Pipes**, **ggplot2**, **Packages**
+
+---
+
+# File: Names
+
+File names should be **meaningful** and end in `.R`.
+
+--
+
+* **Meaningful:** something concise, that still evokes its contents. 
+
+--
+
+* Avoid using special characters in file names, stick with numbers, letters, `-`, and `_`.
+
+--
+
+1.    foo.r
+2.    fit_models.R
+3.    fit models.R
+4.    stuff.r
+5.    utility_functions.R
+
+* Which file names are good or bad?
+
+--
+
+If files should be run in a particular order, prefix them with numbers. 
+
+--
+
+* +10 files? left pad with zero:
+
+
+    00_download.R, 01_explore.R, ... 09_model.R, 10_visualize.R
+
+--
+
+* Pay attention to capitalization!
+
+
+???
+
+Since you, or some of your collaborators, 
+might be using an operating system with a case-insensitive file system (e.g., 
+Microsoft Windows or OS X) which can lead to problems with (case-sensitive) 
+revision control systems.
+
+Prefer file names that are all lower case and **never** have names that differ only in their capitalization. 
+---
+# Files: Internal Structure
+
+* Start by loading your libraries all at once at the beginning of the file. 
+
+
+```r
+library(tidyverse)
+library(gapminder)
+```
+
+--
+
+* Use commented lines of `-` and `=` to break up your file into easily readable 
+chunks.
+
+
+```r
+# Load data ---------------------------
+# Plot data ---------------------------
+```
+
+---
+# Syntax: Object Names
+
+## Object names
+
+&gt; "There are only two hard things in Computer Science: cache invalidation and 
+&gt; naming things." 
+&gt;
+&gt; --- Phil Karlton
+
+
+* Variable and function names should use only lowercase letters, numbers, and `_`. 
+
+* Use underscores (`_`) (so called snake case) to separate words within a name. 
+
+--
+
+
+```r
+DayOne
+day_one
+day_1
+dayone
+```
+
+Which names are "good" or "bad"?
+
+---
+# Syntax: Comments
+
+* In data analysis code, use comments to record important findings and analysis decisions. 
+
+--
+
+* If you need comments to explain what your code is doing, consider rewriting your code to be clearer.
+
+--
+
+* If you discover that you have more comments than code, consider switching to RMarkdown. 
+
+---
+# Functions: Naming
+
+* **Variable names** = nouns, **function names** = verbs. 
+
+* Avoid re-using common functions and variables.
+
+
+
+```r
+# Good
+add_row()
+permuter()
+
+# Bad
+row_adder()
+permutation()
+```
+
+* N.B. Google prefers identifying functions with `BigCamelCase` to clearly distinguish them from other objects.
+
+
+```r
+# Good
+DoNothing &lt;- function() {
+  return(invisible(NULL))
+}
+```
+
+
+---
+# Functions: long lines
+
+
+```r
+# Good
+long_function_name &lt;- function(a = "a long argument",
+                               b = "another argument",
+                               c = "another long argument") {
+  # As usual code is indented by two spaces.
+}
+# Bad
+long_function_name &lt;- function(a = "a long argument",
+  b = "another argument",
+  c = "another long argument") {
+  # Here it's hard to spot where the definition ends and the
+  # code begins
+}
+```
+
+???
+
+If a function definition runs over multiple lines, indent the second line to 
+where the definition starts.
+
+---
+# Functions: Comments
+
+* Use comments to explain the "why" not the "what" or "how".
+
+* Each line of a comment should begin with the comment symbol and a single space `#`: 
+
+
+```r
+# Good
+
+# Objects like data frames are treated as leaves
+x &lt;- map_if(x, is_bare_list, recurse)
+
+# Bad
+
+# Recurse only with bare lists
+x &lt;- map_if(x, is_bare_list, recurse)
+```
+
+Comments should be in sentence case, and only end with a full stop if they
+contain at least two sentences.
+
+---
+# R packages supporting the tidyverse style guide. 
+
+There are two R packages that support the "tidyverse style guide"
+
+* `styler` - allows you to interactively restyle selected text, files, or entire projects. 
+
+* `lintr` performs automated checks to confirm that you conform to the style guide. 
+
+---
+# Python style guides
+
+* PEP8 (links with PyCharm)
+
+* https://black.readthedocs.io/en/stable/
+
+---
+
+# PEP8 Code Layout
+
+* Indentation
+  * 4 spaces per indentation level
+* Maximum line length
+  * Max of 79 characters
+* Tabs or spaces
+  * Spaces
+* Blank lines
+  * Surround top-level function and class definitions with two blank lines.
+  
+---
+# Naming Conventions
+
+### Package and Module Names
+
+* Modules should have short, all-lowercase names. 
+
+* Underscores can be used in the module name if it improves readability.
+
+--
+
+### Class Names
+
+* should normally use the CapWords convention
+
+--
+
+### Function and Variable Names
+
+* Function names should be lowercase, with words separated by underscores.
+
+---
+# Comments
+
+* Use inline comments sparingly!
+
+--
+
+* Comments that contradict the code are worse than no comments!!
+
+--
+
+* Comments should be complete sentences.
+
+--
+
+* Ensure that your comments are clear and easily understandable to other speakers of the language you are writing in.
+
+-- 
+
+* Python coders from non-English speaking countries: please write your comments in English. 
+
+---
+# Packages in Python
+
+* pylint
+
+* lint
+
+
+---
+# Reflections
+
+* What do these style guides have in common?
+
+* What aspects are most difficult to implement?
+
+* What parts of coding aren't covered by the style guide?
+
+* What did you find interesting/surprising?
+
+<div class="countdown" id="timer_5f3ce73d" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div> 
+
+---
+# My reflections
+
+**Things in common**
+
+* Naming conventions (to distinguish different elements)
+
+--
+
+* Formatting rules (for readability/identifying changes)
+
+--
+
+* Names should be meaningful!
+
+--
+
+**Most difficult to implement**
+
+--
+
+* Meaningful names.
+
+--
+
+**What they didn't cover**
+
+--
+
+* Compartmentalisation (e.g. functions sources from functions.R)
+--
+
+**What I found interesting**
+
+--
+
+* Use comments sparingly
+
+--
+
+* Code should "speak for itself". Be clear and self-explanatory!
+
+---
+
+class: center, middle
+
+# Thanks!
+
+Slides created via the R package [**xaringan**](https://github.com/yihui/xaringan).
+
+The chakra comes from [remark.js](https://remarkjs.com), [**knitr**](http://yihui.name/knitr), and [R Markdown](https://rmarkdown.rstudio.com).
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "14:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

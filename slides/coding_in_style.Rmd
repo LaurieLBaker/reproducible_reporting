@@ -1,0 +1,460 @@
+---
+title: "Coding in style in R"
+subtitle: "Data Science Campus, Office for National Statistics"  
+author: 
+  - "Dr. Laurie Baker"
+date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: 14:9
+---
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+
+
+library(xaringanthemer)
+style_duo_accent(
+  primary_color = "#23395b",
+  secondary_color = "#f48d23",
+  inverse_header_color = "#f48d23"
+)
+
+```
+
+```{r countdown library, echo = FALSE}
+
+library(countdown)
+
+```
+
+---
+
+# You
+
+.pull_left[
+* Know how to code!
+
+* Collaborate with others and/or your past self on a regular basis.
+
+* Have not necessarily been trained in how to write "good code". 
+]
+.pull-right[
+
+
+]
+
+---
+# dumpster or Dumpster?
+
+* What do the New York Times, daily mail, and good coders have in common?
+
+<p style="font-size: 0.9rem;font-style: italic;"><img style="display: block;" src="https://live.staticflickr.com/7299/13098098485_fc416664e7_b.jpg" alt="dumpster"><a href="https://www.flickr.com/photos/33378239@N00/13098098485">"dumpster"</a><span> by <a href="https://www.flickr.com/photos/33378239@N00">kendrak</a></span> is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/2.0/?ref=ccsearch&atype=html" style="margin-right: 5px;">CC BY-NC-SA 2.0</a><a href="https://creativecommons.org/licenses/by-nc-sa/2.0/?ref=ccsearch&atype=html" target="_blank" rel="noopener noreferrer" style="display: inline-block;white-space: none;margin-top: 2px;margin-left: 3px;height: 22px !important;"><img style="height: inherit;margin-right: 3px;display: inline-block;" src="https://search.creativecommons.org/static/img/cc_icon.svg" /><img style="height: inherit;margin-right: 3px;display: inline-block;" src="https://search.creativecommons.org/static/img/cc-by_icon.svg" /><img style="height: inherit;margin-right: 3px;display: inline-block;" src="https://search.creativecommons.org/static/img/cc-nc_icon.svg" /><img style="height: inherit;margin-right: 3px;display: inline-block;" src="https://search.creativecommons.org/static/img/cc-sa_icon.svg" /></a></p>
+
+--
+
+* They all use style guides.
+
+???
+
+Conversations about style in the newsroom can involve something as simple as the decapitalization of “dumpster” (thanks to the loss of a trademark), or as complex as a word like Brexit. 
+---
+
+# Coding style
+
+>"Good coding style is like correct punctuation: you can manage without it, butitsuremakesthingseasiertoread"
+
+> Hadley Wickham
+
+
+--
+
+* We're going to look at a few R and Python style guides together. 
+
+???
+
+---
+# Style guides
+
+* A set of rules about style. 
+
+--
+
+* All style guides are fundamentally opinionated.
+
+--
+
+* Some decisions do make code easier to use (e.g. matching indenting to programming structure), but many are arbitrary.
+
+--
+
+* Most importantly a style guide provides **consistency**.
+
+--
+
+* It makes code easier to write because you need to make fewer decisions. 
+
+---
+# R style guides 
+
+* [Tidyverse Style Guide](https://style.tidyverse.org/index.html); [Google R Style Guide](https://google.github.io/styleguide/Rguide.html) (forked from the Tidyverse style guide). 
+
+--
+
+**Tidyverse Style Guide**
+
+* **Files:** Names, Organisation, and Internal Structure.
+
+--
+
+* **Syntax** Object names, Spacing, Function calls, Control flow, Long lines, Semicolons, Assignment, Data, Comments. 
+
+--
+
+* **Functions** Naming, Long lines, return(), Comments
+
+--
+
+* **Pipes**, **ggplot2**, **Packages**
+
+---
+
+# File: Names
+
+File names should be **meaningful** and end in `.R`.
+
+--
+
+* **Meaningful:** something concise, that still evokes its contents. 
+
+--
+
+* Avoid using special characters in file names, stick with numbers, letters, `-`, and `_`.
+
+--
+
+1.    foo.r
+2.    fit_models.R
+3.    fit models.R
+4.    stuff.r
+5.    utility_functions.R
+
+* Which file names are good or bad?
+
+--
+
+If files should be run in a particular order, prefix them with numbers. 
+
+--
+
+* +10 files? left pad with zero:
+
+
+    00_download.R, 01_explore.R, ... 09_model.R, 10_visualize.R
+
+--
+
+* Pay attention to capitalization!
+
+
+???
+
+Since you, or some of your collaborators, 
+might be using an operating system with a case-insensitive file system (e.g., 
+Microsoft Windows or OS X) which can lead to problems with (case-sensitive) 
+revision control systems.
+
+Prefer file names that are all lower case and **never** have names that differ only in their capitalization. 
+---
+# Files: Internal Structure
+
+* Start by loading your libraries all at once at the beginning of the file. 
+
+```{r, eval = FALSE}
+library(tidyverse)
+library(gapminder)
+```
+
+--
+
+* Use commented lines of `-` and `=` to break up your file into easily readable 
+chunks.
+
+```{r, eval = FALSE}
+# Load data ---------------------------
+# Plot data ---------------------------
+```
+
+---
+# Syntax: Object Names
+
+## Object names
+
+> "There are only two hard things in Computer Science: cache invalidation and 
+> naming things." 
+>
+> --- Phil Karlton
+
+
+* Variable and function names should use only lowercase letters, numbers, and `_`. 
+
+* Use underscores (`_`) (so called snake case) to separate words within a name. 
+
+--
+
+```{r, eval = FALSE}
+
+DayOne
+day_one
+day_1
+dayone
+```
+
+Which names are "good" or "bad"?
+
+---
+# Syntax: Comments
+
+* In data analysis code, use comments to record important findings and analysis decisions. 
+
+--
+
+* If you need comments to explain what your code is doing, consider rewriting your code to be clearer.
+
+--
+
+* If you discover that you have more comments than code, consider switching to RMarkdown. 
+
+---
+# Functions: Naming
+
+* **Variable names** = nouns, **function names** = verbs. 
+
+* Avoid re-using common functions and variables.
+
+
+```{r eval = FALSE}
+# Good
+add_row()
+permuter()
+
+# Bad
+row_adder()
+permutation()
+```
+
+* N.B. Google prefers identifying functions with `BigCamelCase` to clearly distinguish them from other objects.
+
+```{r, eval = FALSE}
+
+# Good
+DoNothing <- function() {
+  return(invisible(NULL))
+}
+
+```
+
+
+---
+# Functions: long lines
+
+```{r, eval = FALSE}
+# Good
+long_function_name <- function(a = "a long argument",
+                               b = "another argument",
+                               c = "another long argument") {
+  # As usual code is indented by two spaces.
+}
+# Bad
+long_function_name <- function(a = "a long argument",
+  b = "another argument",
+  c = "another long argument") {
+  # Here it's hard to spot where the definition ends and the
+  # code begins
+}
+```
+
+???
+
+If a function definition runs over multiple lines, indent the second line to 
+where the definition starts.
+
+---
+# Functions: Comments
+
+* Use comments to explain the "why" not the "what" or "how".
+
+* Each line of a comment should begin with the comment symbol and a single space `#`: 
+
+```{r, eval = FALSE}
+# Good
+
+# Objects like data frames are treated as leaves
+x <- map_if(x, is_bare_list, recurse)
+
+# Bad
+
+# Recurse only with bare lists
+x <- map_if(x, is_bare_list, recurse)
+```
+
+Comments should be in sentence case, and only end with a full stop if they
+contain at least two sentences.
+
+---
+# R packages supporting the tidyverse style guide. 
+
+There are two R packages that support the "tidyverse style guide"
+
+* `styler` - allows you to interactively restyle selected text, files, or entire projects. 
+
+* `lintr` performs automated checks to confirm that you conform to the style guide. 
+
+---
+# Python style guides
+
+* [PEP8](https://www.python.org/dev/peps/pep-0008/) (works well with PyCharm)
+
+--
+
+* [Black](https://black.readthedocs.io/en/stable/)
+
+--
+
+* [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html)
+
+---
+
+# PEP8 Code Layout
+
+* Indentation
+  * 4 spaces per indentation level
+* Maximum line length
+  * Max of 79 characters
+* Tabs or spaces
+  * Spaces
+* Blank lines
+  * Surround top-level function and class definitions with two blank lines.
+  
+---
+# Naming Conventions
+
+### Package and Module Names
+
+* Modules should have short, all-lowercase names. 
+
+* Underscores can be used in the module name if it improves readability.
+
+--
+
+### Class Names
+
+* should normally use the CapWords convention
+
+--
+
+### Function and Variable Names
+
+* Function names should be lowercase, with words separated by underscores.
+
+---
+# Comments
+
+* Use inline comments sparingly!
+
+--
+
+* Comments that contradict the code are worse than no comments!!
+
+--
+
+* Comments should be complete sentences.
+
+--
+
+* Ensure that your comments are clear and easily understandable to other speakers of the language you are writing in.
+
+-- 
+
+* Python coders from non-English speaking countries: please write your comments in English. 
+
+---
+# Packages in Python
+
+* pylint
+
+* lint
+
+
+---
+# Reflections
+
+* What do these style guides have in common?
+
+* What aspects are most difficult to implement?
+
+* What parts of coding aren't covered by the style guide?
+
+* What did you find interesting/surprising?
+
+`r countdown(minutes = 10, seconds = 00)` 
+
+---
+# My reflections
+
+**Things in common**
+
+--
+
+* Naming conventions (to distinguish different elements)
+
+--
+
+* Formatting rules (for readability/identifying changes)
+
+--
+
+* Names should be meaningful!
+
+--
+
+**Most difficult to implement**
+
+--
+
+* Meaningful names.
+
+--
+
+**What they didn't cover**
+
+--
+
+* Compartmentalisation (e.g. functions sources from functions.R)
+
+--
+
+**What I found interesting**
+
+--
+
+* Use comments sparingly
+
+--
+
+* Code should "speak for itself". Be clear and self-explanatory!
+
+---
+
+class: center, middle
+
+# Thanks!
+
+Slides created via the R package [**xaringan**](https://github.com/yihui/xaringan).
+
+The chakra comes from [remark.js](https://remarkjs.com), [**knitr**](http://yihui.name/knitr), and [R Markdown](https://rmarkdown.rstudio.com).

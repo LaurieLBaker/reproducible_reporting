@@ -1,0 +1,127 @@
+---
+title: Reproducible Country Report
+author: Agnes and Teteh
+date: 30/07/2020
+output: 
+  html_document:
+    theme: cosmo
+    highlight: haddock
+    number_sections: TRUE
+params:
+  country: Colombia
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r Libraries}
+
+# install.packages("tidyverse")
+library(tidyverse)
+
+# install.packages("kableExtra")
+library(kableExtra)
+
+# install.packages("gapminder")
+library(gapminder)
+```
+
+```{r Data Preparation}
+
+# Country of Interest
+gapminder_country <- gapminder %>%
+  filter(country == params$country,
+         year > 1980 & year <= 2010)
+
+# Wider Continent
+
+gapminder_continent <- gapminder %>%
+  filter(continent == "Americas",
+         year > 1980 & year <= 2010)
+
+# Whole world
+gapminder_sub <- gapminder %>%
+  filter(year > 1980 & year <= 2010)
+
+```
+
+
+# Life expectancy in `r params$country`
+
+
+```{r lifeExp-plot}
+
+ggplot() +
+  geom_line(
+    data = gapminder_sub,
+    aes(
+      x = year,
+      y = lifeExp,
+      group = country,
+      color = continent
+    ),
+    alpha = 0.2,
+    lwd = 0.75
+  ) +
+  geom_line(
+    data = gapminder_country,
+    aes(x = year,
+        y = lifeExp,
+        color = continent
+    ),
+    lwd = 2
+    ) +
+  labs(
+    x = "Year",
+    y = "Life Expectancy",
+    title = paste(
+      "Life Expectancy over time in",
+      params$country,
+      "from 1980 to 2010",
+      sep = " "
+    ),
+    color = "Continent"
+  ) +
+  geom_label(
+    data = gapminder_country %>%
+      slice(which.min(year)),
+    aes(
+      x = year, 
+      y = lifeExp, 
+      label = country
+    ),
+    nudge_x = 2,
+    nudge_y = -2.5
+  )
+
+```
+
+
+```{r average_lifeExp}
+
+average_lifeExp <- gapminder_country %>%
+  summarise(average_lifeExp = round(mean(lifeExp), 2))
+
+```
+
+
+The average life expectancy in `r params$country` between 1980 and 2010 was `r average_lifeExp`.
+
+# Life expectancy in the Americas
+
+```{r}
+
+lifeExp_country <- gapminder_continent %>%
+  group_by(country) %>%
+  summarise(mean_lifeExp = mean(lifeExp))
+
+lifeExp_country %>% 
+  kable(booktabs = T,
+        caption = "Mean Life Expectancy in the Americas") %>%
+  kable_styling() %>%
+  row_spec(which(lifeExp_country$country == params$country), bold = T, color = "white", background = "blue")
+
+```
+

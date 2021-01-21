@@ -1,0 +1,155 @@
+---
+title: "**`r paste('Life Expectancy in ', params$country)`**" # Step 5 Updating the title
+author: Agnes and Teteh
+date: "`r format(Sys.Date(), '%d %B %Y')`" # Step 5 Updating the date
+output: 
+  html_document:
+    theme: cosmo # Step 1. Changing the theme
+    highlight: haddock
+    number_sections: TRUE
+    toc: TRUE # Step 1. Adding a table of contents
+params:
+  country: Madagascar
+  continent: Africa # Step 4: Adding another parameter
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE) # Step 2 Changing the code chunk settings
+```
+
+```{r Libraries}
+
+# install.packages("tidyverse")
+library(tidyverse)
+
+# install.packages("kableExtra")
+library(kableExtra)
+
+# install.packages("gapminder")
+library(gapminder)
+
+```
+
+```{r Data Preparation}
+
+# Country of Interest
+gapminder_country <- gapminder %>%
+  filter(country == params$country,
+         year > 1980 & year <= 2010)
+
+# Wider Continent
+
+gapminder_continent <- gapminder %>%
+  filter(continent == params$continent, # Step 4. Update Americas with the parameter for continent
+         year > 1980 & year <= 2010)
+
+# Whole world
+gapminder_sub <- gapminder %>%
+  filter(year > 1980 & year <= 2010)
+
+```
+
+
+# Life expectancy in `r params$country`
+
+
+```{r lifeExp-plot}
+
+ggplot() +
+  geom_line(
+    data = gapminder_sub,
+    aes(
+      x = year,
+      y = lifeExp,
+      group = country,
+      color = continent
+    ),
+    alpha = 0.2,
+    lwd = 0.75
+  ) +
+  geom_line(
+    data = gapminder_country,
+    aes(x = year,
+        y = lifeExp,
+        color = continent
+    ),
+    lwd = 2
+    ) +
+  labs(
+    x = "Year",
+    y = "Life Expectancy",
+    title = paste(
+      "Life Expectancy over time in",
+      params$country,
+      "from 1980 to 2010",
+      sep = " "
+    ),
+    color = "Continent"
+  ) +
+  geom_label(
+    data = gapminder_country %>%
+      slice(which.min(year)),
+    aes(
+      x = year, 
+      y = lifeExp, 
+      label = country
+    ),
+    nudge_x = 2,
+    nudge_y = -2.5
+  )
+
+```
+
+
+```{r average_lifeExp}
+
+average_lifeExp <- gapminder_country %>%
+  summarise(average_lifeExp = round(mean(lifeExp), 2))
+
+```
+
+```{r min_lifeExp}
+
+## Step 3 Calculating another summary statistic
+
+min_lifeExp <- gapminder_country %>%
+  summarise(min_lifeExp = round(min(lifeExp), 2))
+
+```
+
+```{r max_lifeExp}
+
+## Step 3 Calculating another summary statistic
+
+max_lifeExp <- gapminder_country %>%
+  summarise(max_lifeExp = round(max(lifeExp), 2))
+
+```
+
+The average life expectancy in `r params$country` between 1980 and 2010 was `r average_lifeExp`. The minimum life expectancy in `r params$country` between 1980 and 2010 was `r min_lifeExp`. The maximum life expectancy in `r params$country` between 1980 and 2010 was `r max_lifeExp`. 
+
+<!-- Step 4. Replace Americas with the new parameter for continent -->
+
+# Life expectancy in `r params$continent`
+
+```{r}
+
+lifeExp_country <- gapminder_continent %>%
+  group_by(country) %>%
+  summarise(mean_lifeExp = mean(lifeExp))
+
+lifeExp_country %>% 
+  kable(booktabs = T,
+        caption = paste("Mean Life Expectancy in the", params$continent, sep = " ")) %>% # Step 4 Replace mentions of Americas with the parameter for continent.
+  kable_styling() %>%
+  row_spec(which(lifeExp_country$country == params$country), bold = T, color = "white", background = "blue")
+
+```
+
+
+
+<!-- Step 2 Adding a link and a reference -->
+
+### About the data 
+
+The data comes from the [gapminder](http://www.gapminder.org/data/) dataset from the [`gapminder` package](https://github.com/jennybc/gapminder) by Jenny Bryan.

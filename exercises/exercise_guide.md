@@ -1,0 +1,2 @@
+# Guide to Exercises
+* activity_3: Parameterised r markdown report. Follow the slides to fix the issues in the Country_Report.Rmd. Check your answers against iterations of the next and improved Country_Report*.Rmd
