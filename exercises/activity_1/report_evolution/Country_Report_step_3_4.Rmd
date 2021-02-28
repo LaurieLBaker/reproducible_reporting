@@ -1,7 +1,7 @@
 ---
-title: "Reproducible Country Report"
+title: "`r paste('Life Expectancy in ', params$country)`" 
 author: "Agnes and Teteh"
-date: "30/07/2020"
+date: "`r format(Sys.Date(), '%d %B %Y')`"
 output:
   html_document:
     df_print: paged
@@ -10,8 +10,8 @@ output:
   toc: yes
   theme: cosmo
 params:
-  country: Japan
-  continent: Asia
+  country: Jamaica
+  continent: Americas
 ---
 
 ```{r setup, include = FALSE}
@@ -128,7 +128,7 @@ max_lifeExp <- gapminder_country %>%
 
 ```
 
-The average life expectancy in `r params$country` between 1980 and 2010 was `r average_lifeExp`. The minimum life expectancy in `r params$country` between 1980 and 2010 was `r min_lifeExp`. The maximum life expectancy in `r params$country` between 1980 and 2010 was `r max_lifeExp`. 
+The average life expectancy in `r params$country` between 1980 and 2010 was `r average_lifeExp$average_lifeExp`. The minimum life expectancy in `r params$country` between 1980 and 2010 was `r min_lifeExp$min_lifeExp`. The maximum life expectancy in `r params$country` between 1980 and 2010 was `r max_lifeExp$max_lifeExp`. 
 
 <!-- Step 4. Replace Americas with the new parameter for continent -->
 
@@ -154,4 +154,4 @@ lifeExp_country %>%
 
 ### About the data
 
-The data comes from the [gapminder](http://www.gapminder.org/data/) dataset from the [`gapminder` package](https://github.com/jennybc/gapminder) by Jenny Bryan.
+The data comes from the [gapminder](http://www.gapminder.org/data/){target="_blank"} dataset from the [`gapminder` package](https://github.com/jennybc/gapminder) by Jenny Bryan.
