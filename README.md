@@ -26,7 +26,9 @@ Artwork by @AllisonHorst
 
 You've been enlisted by stats advisers, Agnes and Teteh, to help them improve their Rmarkdown country report.
 
-Follow the guide in the [slides](slides/reproducible_report_slides.html) to help them clean up their [Country_Report.Rmd](exercises/activity_3/Country_Report.Rmd). They could definitely use some help!
+Follow the guide in the [slides](slides/reproducible_report_slides.html) to help them clean up their [Country_Report.Rmd](exercises/activity_1/Country_Report.Rmd). They could definitely use some help!
+
+To view the presenter notes in the slides, type 'p'. If you would like to edit or adapt the slides you will need to install the package [Xaringan](https://bookdown.org/yihui/rmarkdown/xaringan-start.html) and follow the instructions in the link.
 
 # Coding in Style
 
