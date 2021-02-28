@@ -263,7 +263,7 @@ Artwork by @allison_horst
 
 Let's create our first R Markdown document. 
 
-<img src="images/create_new_RMD_file.png" alt="Steps to create a new R Markdown file: Go to File menu, then select New File then select R Markdown. Create a title and choose the output style and you have your first R Markdown file" style="width: 80%; height: 80%" class="center"/>
+<img src="images/create_new_RMD_file.PNG" alt="Steps to create a new R Markdown file: Go to File menu, then select New File then select R Markdown. Create a title and choose the output style and you have your first R Markdown file" style="width: 80%; height: 80%" class="center"/>
 Image credit: Rmarkdown cheatsheet
 
 
