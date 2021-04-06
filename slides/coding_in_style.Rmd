@@ -37,24 +37,30 @@ library(countdown)
 
 # You
 
-.pull_left[
 * Know how to code!
+
+--
 
 * Collaborate with others and/or your past self on a regular basis.
 
-* Have not necessarily been trained in how to write "good code". 
-]
-.pull-right[
+--
 
+* Have never been trained in how to write "good code". 
 
-]
+???
+What I'm assuming about you:
 
+You know how to code!
+
+You collaborate with others and/or your past self on a regular basis.
+
+But you have not necessarily been trained in how to write "good code".
 ---
 # dumpster or Dumpster?
 
 * What do the New York Times, daily mail, and good coders have in common?
 
-<p style="font-size: 0.9rem;font-style: italic;"><img style="display: block;" src="https://live.staticflickr.com/7299/13098098485_fc416664e7_b.jpg" alt="dumpster"><a href="https://www.flickr.com/photos/33378239@N00/13098098485">"dumpster"</a><span> by <a href="https://www.flickr.com/photos/33378239@N00">kendrak</a></span> is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/2.0/?ref=ccsearch&atype=html" style="margin-right: 5px;">CC BY-NC-SA 2.0</a><a href="https://creativecommons.org/licenses/by-nc-sa/2.0/?ref=ccsearch&atype=html" target="_blank" rel="noopener noreferrer" style="display: inline-block;white-space: none;margin-top: 2px;margin-left: 3px;height: 22px !important;"><img style="height: inherit;margin-right: 3px;display: inline-block;" src="https://search.creativecommons.org/static/img/cc_icon.svg" /><img style="height: inherit;margin-right: 3px;display: inline-block;" src="https://search.creativecommons.org/static/img/cc-by_icon.svg" /><img style="height: inherit;margin-right: 3px;display: inline-block;" src="https://search.creativecommons.org/static/img/cc-nc_icon.svg" /><img style="height: inherit;margin-right: 3px;display: inline-block;" src="https://search.creativecommons.org/static/img/cc-sa_icon.svg" /></a></p>
+<p style="font-size: 0.8rem;font-style: italic;"><img style="display: block;" src="https://live.staticflickr.com/7299/13098098485_fc416664e7_b.jpg" width="500" height="350" alt="dumpster"><a href="https://www.flickr.com/photos/33378239@N00/13098098485">"dumpster"</a><span> by <a href="https://www.flickr.com/photos/33378239@N00">kendrak</a></span> is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/2.0/?ref=ccsearch&atype=html" style="margin-right: 5px;">CC BY-NC-SA 2.0</a></p>
 
 --
 
@@ -69,7 +75,7 @@ Conversations about style in the newsroom can involve something as simple as the
 
 >"Good coding style is like correct punctuation: you can manage without it, butitsuremakesthingseasiertoread"
 
-> Hadley Wickham
+> Hadley Wickham, [The Tidyverse Style Guide](https://style.tidyverse.org/)
 
 
 --
@@ -78,27 +84,44 @@ Conversations about style in the newsroom can involve something as simple as the
 
 ???
 
+Let's look at a quote from the Tidyverse Style Guide by Hadley Wickham: Good coding style is like correct punctuation: you can manage without it, but it sure makes things easier to read.
+
+
 ---
 # Style guides
 
 * A set of rules about style. 
 
+???
+So what are style guides? Well they're a set of rules about style.
+
 --
 
 * All style guides are fundamentally opinionated.
 
+???
+All style guides are fundamentally opinionated. 
+
 --
 
-* Some decisions do make code easier to use (e.g. matching indenting to programming structure), but many are arbitrary.
+* Some decisions make code easier to use but many are arbitrary.
+
+???
+Some decisions make code easier to use, for example matching indenting to programming structure, but many are arbitrary. 
 
 --
 
 * Most importantly a style guide provides **consistency**.
 
---
+???
 
+One of the most important things a style guide provides is consistency!!
+
+--
 * It makes code easier to write because you need to make fewer decisions. 
 
+???
+It makes code easier to write because you need to make fewer decisions. It also provides a consistent standard. 
 ---
 # R style guides 
 
@@ -198,7 +221,7 @@ chunks.
 > "There are only two hard things in Computer Science: cache invalidation and 
 > naming things." 
 >
-> --- Phil Karlton
+> Phil Karlton
 
 
 * Variable and function names should use only lowercase letters, numbers, and `_`. 
@@ -379,17 +402,21 @@ There are two R packages that support the "tidyverse style guide"
 
 * Ensure that your comments are clear and easily understandable to other speakers of the language you are writing in.
 
--- 
 
-* Python coders from non-English speaking countries: please write your comments in English. 
+???
+
+One of the parts of the Pep8 style guide that is contentious is the emphasis on English, especially as it is worded in the Pep8 guide https://www.python.org/dev/peps/pep-0008/: "Python coders from non-English speaking countries: please write your comments in English, unless you are 120% sure that the code will never be read by people who don't speak your language." 
 
 ---
 # Packages in Python
 
-* pylint
+* `pylint` - a Python static code analysis tool which looks for programming errors, helps enforcing a coding standard, sniffs for code smells and offers simple refactoring suggestions.
 
-* lint
+* `Flake8` - is a Python library that wraps PyFlakes, pycodestyle and Ned Batchelder's McCabe script. It is a great toolkit for checking your code base against coding style (PEP8)
 
+???
+
+pylint and Flake8 are a few packages that are used to lint and tidy code.
 
 ---
 # Reflections
