@@ -24,18 +24,26 @@ params:
 
 #install.packages("tidyverse")
 #install.packages("gapminder")
+# install.packages("devtools")
+#install.packages("xaringan")
+#devtools::install_github("gadenbuie/xaringanExtra")
 #devtools::install_github("gadenbuie/countdown")
+#install.packages("kableExtra")
+#install.packages("showtext")
 
-
+options(htmltools.dir.version = FALSE)
 library(tidyverse)
 library(gapminder)
 library(countdown)
 library(xaringanExtra)
 library(kableExtra)
+library(showtext)
 
-xaringanExtra::use_xaringan_extra(include = c("panelset", "tile_view", "share_again", "use_broadcast"))
 
-xaringanExtra::style_share_again(share_buttons = c("twitter", "linkedin", "pocket"))
+xaringanExtra::use_clipboard()
+xaringanExtra::style_share_again(
+  share_buttons = c("twitter", "linkedin", "pocket")
+)
 
 knitr::opts_chunk$set(out.height = "68%", out.width = "68%")
 
@@ -207,12 +215,12 @@ The learning objectives of the course include
 * For this adventure you'll also need the `tidyverse`, `gapminder`, `shiny`,  `kableExtra`, `knitr` and `rmarkdown` packages.
 
 ```{r packages, eval = FALSE}
-#install.packages("tidyverse")
-#install.packages("gapminder")
-#install.packages("shiny")
-#install.packages("kableExtra")
-#install.packages("knitr)
-#install.packages("rmarkdown")
+# install.packages("tidyverse")
+# install.packages("gapminder")
+# install.packages("shiny")
+# install.packages("kableExtra")
+# install.packages("knitr")
+# install.packages("rmarkdown")
 
 
 library(tidyverse) # tidyverse metapackage for plots, data manipulation and more
@@ -604,9 +612,9 @@ params:
 `r countdown(minutes = 3, seconds = 00)` 
  
 
---
 
-We'll revisit parameters in more depth later on!
+
+* We'll revisit parameters in more depth later on!
 
 ???
 
