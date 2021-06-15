@@ -1,22 +1,24 @@
 ---
-title: Reproducible Country Report
-author: Agnes and Teteh
-date: 30/07/2020
+title: "`r paste('Life Expectancy in ', params$country)`"
+author: "Agnes and Teteh"
+date: "`r format(Sys.Date(), '%A %b %Y')`"
 output: 
   html_document:
-    theme: cosmo
+    theme: readable
     highlight: haddock
     number_sections: TRUE
+    toc: TRUE
+    toc_depth: 1
 params:
-  country: Colombia
+  country: Cambodia
+  continent: Asia
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 ```
 
-
-```{r Libraries}
+```{r Libraries, echo = FALSE, message = FALSE, warning = FALSE}
 
 # install.packages("tidyverse")
 library(tidyverse)
@@ -26,6 +28,11 @@ library(kableExtra)
 
 # install.packages("gapminder")
 library(gapminder)
+
+# install.packages("leaflet")
+library(leaflet)
+
+library(shiny)
 ```
 
 ```{r Data Preparation}
@@ -38,7 +45,7 @@ gapminder_country <- gapminder %>%
 # Wider Continent
 
 gapminder_continent <- gapminder %>%
-  filter(continent == "Americas",
+  filter(continent == params$continent,
          year > 1980 & year <= 2010)
 
 # Whole world
@@ -49,9 +56,10 @@ gapminder_sub <- gapminder %>%
 
 
 # Life expectancy in `r params$country`
+## 2nd level
+### 3rd level
 
-
-```{r lifeExp-plot}
+```{r lifeExp-plot, fig.align = 'right'}
 
 ggplot() +
   geom_line(
@@ -99,6 +107,14 @@ ggplot() +
 ```
 
 
+```{r min_lifeExp}
+
+min_lifeExp <- gapminder_country %>%
+  summarise(min_lifeExp = round(min(lifeExp), 2))
+
+```
+
+
 ```{r average_lifeExp}
 
 average_lifeExp <- gapminder_country %>%
@@ -107,11 +123,14 @@ average_lifeExp <- gapminder_country %>%
 ```
 
 
-The average life expectancy in `r params$country` between 1980 and 2010 was `r average_lifeExp`.
+The average life expectancy in `r params$country` between 1980 and 2010 was `r average_lifeExp`. 
 
-# Life expectancy in the Americas
+The minimum life expectancy in `r params$country` between 1980 and 2010 was `r min_lifeExp`.
 
-```{r}
+# Life expectancy in the `r params$continent`
+
+
+```{r table}
 
 lifeExp_country <- gapminder_continent %>%
   group_by(country) %>%
@@ -119,9 +138,25 @@ lifeExp_country <- gapminder_continent %>%
 
 lifeExp_country %>% 
   kable(booktabs = T,
-        caption = "Mean Life Expectancy in the Americas") %>%
+        caption = paste0("Mean Life Expectancy in " , params$continent)) %>%
   kable_styling() %>%
   row_spec(which(lifeExp_country$country == params$country), bold = T, color = "white", background = "blue")
 
 ```
 
+# Leaflet map
+
+```{r}
+
+df = data.frame(Lat = 1:10, Long = rnorm(10))
+leaflet(df) %>% 
+  addCircles() %>%
+  addProviderTiles(providers$CartoDB.Positron)
+
+```
+
+
+## About the data
+
+The data comes from the [gapminder](http://www.gapminder.org/data/)
+dataset from the [gapminder package](https://github.com/jennybc/gapminder) by Jenny Bryan.
