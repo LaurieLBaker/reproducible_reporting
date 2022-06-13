@@ -142,7 +142,7 @@ style_duo_accent(
 .pull-right[
 
 
-<img src="images/rmarkdown_wiz.png" alt="Rmarkdown Recipe for success: text, code, output" style="width: 70%; height: 70%" class="center"/>
+<img src="images/rmarkdown_wiz.png" alt="A fuzzy round monster dressed as a wizard standing over a cauldron following a recipe. The monster wizard at the cauldron is reading a recipe that includes steps “1. Add text. 2. Add code. 3. Knit. 4. (magic) 5. Celebrate perceived wizardry." style="width: 70%; height: 70%" class="center"/>
 Artwork by @allison_horst
 ]
 
@@ -168,7 +168,7 @@ The reproducibility spectrum shows how you can make your publication more reprod
 ---
 # Bring in the band!
 
-<img src="images/rmarkdown_rockstar.png" alt = "Rmarkdown Band Members: Text, Code, Output" style="width: 65%; height: 65%" class="center"/>
+<img src="images/rmarkdown_rockstar.png" alt = "A glam rock band comprised of 3 fuzzy round monsters labeled as Text, Outputs and Code performing together. Stylized title text reads: R Markdown - we’re getting the band back together." style="width: 65%; height: 65%" class="center"/>
 
 Artwork by @allison_horst
 
@@ -255,7 +255,7 @@ You'll need the packages "tidyverse", "gapminder", "shiny", "KableExtra" and "rm
 ]
 
 .pull-right[
-<img src="images/rmarkdown_wizards.png" alt = "Rmarkdown wizardry: text, code, output" style="width: 120%; height: 120%" class="center"/>
+<img src="images/rmarkdown_wizards.png" alt = "Two fuzzy round monsters dressed as wizards, working together to brew different things together from a pantry (code, text, figures, etc.) in a cauldron labeled R Markdown. The monster wizard at the cauldron is reading a recipe that includes steps 1. Add text. 2. Add code. 3. Knit. 4. (magic) 5. Celebrate perceived wizardry. The R Markdown potion then travels through a tube, and is converted to markdown by a monster on a broom with a magic wand, and eventually converted to an output by pandoc. Stylized text (in a font similar to Harry Potter) reads R Markdown. Text. Code. Output. Get it together, people." style="width: 120%; height: 120%" class="center"/>
 
 Artwork by @allison_horst
 ]
@@ -282,7 +282,7 @@ To create a new R Markdown file: Go to the file menu, then select new file, then
 
 # Helping Agnes and Teteh
 
-<img src="images/rmarkdown_wizards_stats_adviser.png" alt = "Rmarkdown wizardry for country reports: text, code, output" style="width: 75%; height: 75%" class="center"/>
+<img src="images/rmarkdown_wizards_stats_adviser.png" alt = "Two fuzzy round monsters dressed as wizards, working together to brew different things together from a pantry (code, text, figures, etc.) in a cauldron labeled R Markdown. The monster wizard at the cauldron is reading a recipe that includes steps 1. Add text. 2. Add code. 3. Knit. 4. (magic) 5. Celebrate perceived wizardry. The R Markdown potion then travels through a tube, and is converted to markdown by a monster on a broom with a magic wand, and eventually converted to an output by pandoc. Stylized text (in a font similar to Harry Potter) reads R Markdown. Text. Code. Output. Get it together, people." style="width: 75%; height: 75%" class="center"/>
 
 Artwork by @allison_horst
 
@@ -336,7 +336,7 @@ Some of the things that could be improved.
 * Plots the average life expectancy between 1980 and 2010 for a country. 
 
 
-```{r lifeExp-plot, echo = FALSE}
+```{r lifeExp-plot, fig.alt = "Line plot showing life expectancy overtime from 1980 to 2010 for different countries around the world. Each line represents one country and is colored by Continent. A label indicates where Colombia is: going from 68 to 74.", echo = FALSE}
 
 
 ggplot() +
@@ -394,13 +394,16 @@ In their report Agnes and Teteh produce a plot of average life expectancy for ea
 
 * Creates a table of the mean life expectancy by country.
 
-```{r table, echo = FALSE, message = FALSE}
+```{r table, fig.alt = "Table with the mean life expectancy in the Americas by country in alphabetical order. Colombia is highlighted with a mean life expectancy of 69.62", echo = FALSE, message = FALSE}
 
 lifeExp_country %>% 
   kable(booktabs = T,
         caption = "Mean Life Expectancy in the Americas") %>%
   kable_styling() %>%
-  row_spec(which(lifeExp_country$country == params$country), bold = T, color = "white", background = "blue")
+  row_spec(which(lifeExp_country$country == params$country), 
+           bold = T, 
+           color = "white", 
+           background = "blue")
 
 ```
 
@@ -1086,7 +1089,7 @@ Let's rerun the report for Paraguay
 
 # But what about Cambodia?
 
-```{r Creating the life expectancy table Cambodia, echo = FALSE, warning = FALSE, message = FALSE}
+```{r Creating the life expectancy table Cambodia, fig.alt = "Table of Mean life Expectancy in the Americas in alphabetical order. No countries are highlighted and Cambodia is not there", echo = FALSE, warning = FALSE, message = FALSE}
 
 # Country of Interest
 gapminder_country <- gapminder %>%
@@ -1145,7 +1148,7 @@ When thinking about parameters think about what changes. If someone asked you to
 ---
 # Nearly there
 
-```{r Prepping Country example for Cambodia, echo = FALSE}
+```{r Prepping Country example for Cambodia, fig.alt = "Table of the Mean Life Expectancy in Asia in alphabetical order. Cambodia is highlighted with a mean life expectancy of 55.61. The title of the table is incorrect and reads Mean Life Expectancy in the Americas",  echo = FALSE}
 
 # Country of Interest
 gapminder_country <- gapminder %>%
@@ -1276,6 +1279,7 @@ Now that we've helped Agnes and Teteh parameterize their report, we can use the 
 # Creating multiple files using `render()`
 
 * Asking for the parameters:
+
 ```{r, eval = FALSE}
 
 rmarkdown::render(input = "Country_Report_Final.Rmd", 
@@ -1348,7 +1352,6 @@ Note, you will want to make sure that the working directory is set to the locati
 # Resources and next steps
 
 * [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/)
-
 
 <img src="images/spectrum-of-reproducibility-containers.png" alt="Reproducibility Spectrum: publication and data and, code and documentation, code and documentation and easy installation, code and documentation and easy installation and runtime environment reproduction" style="width: 80%; height: 80%" class="center"/>
 
