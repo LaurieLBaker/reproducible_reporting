@@ -1,6 +1,6 @@
 ---
 title: "Reproducible Reporting with "
-institute: "Data Science Campus, Office for National Statistics"  
+institute: "Professor of Computer Science, College of the Atlantic"  
 author: 
   - "Dr. Laurie Baker"
 date: '`r Sys.Date()`'
