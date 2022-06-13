@@ -4,7 +4,7 @@
     <title>Reproducible Reporting with</title>
     <meta charset="utf-8" />
     <meta name="author" content="Dr. Laurie Baker" />
-    <meta name="date" content="2021-06-15" />
+    <meta name="date" content="2022-06-13" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/countdown/countdown.css" rel="stylesheet" />
     <script src="libs/countdown/countdown.js"></script>
@@ -234,7 +234,7 @@ Artwork by @allison_horst
 
 --
 
-<div class="countdown" id="timer_60c89977" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_62a704b4" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div> 
  
@@ -540,7 +540,7 @@ params:
 
 3. Try changing the `theme` and adding a `toc` then rerun the document.
 
-<div class="countdown" id="timer_60c89a1d" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_62a70596" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">06</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div> 
 
@@ -596,7 +596,7 @@ params:
 ]
 
 
-<div class="countdown" id="timer_60c89801" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_62a704cc" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div> 
  
@@ -684,7 +684,7 @@ Using the links below add the section **"About the data"** to the document.
 
 The data comes from the [gapminder](http://www.gapminder.org/data/) dataset from the [`gapminder` package](https://github.com/jennybc/gapminder) by Jenny Bryan.
 
-<div class="countdown" id="timer_60c89806" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_62a7035e" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div> 
 
@@ -915,7 +915,7 @@ If you have time, try playing with the figure options.
 * `fig.height, fig.width` - Dimensions of plots in inches
 
 
-<div class="countdown" id="timer_60c89965" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_62a70460" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div> 
  
@@ -975,7 +975,7 @@ We can embed inline R code using an opening and closing back tick. We can then r
 
 * Hint: in R you'll need the functions `max()` and `min()`
 
-<div class="countdown" id="timer_60c89865" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_62a70289" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div> 
  
@@ -1045,7 +1045,7 @@ Parameters values are called in the code as `params$&lt;name&gt;`.
 
 * Where does it appear?
 
-<div class="countdown" id="timer_60c8979c" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_62a70240" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div> 
 
@@ -1213,7 +1213,7 @@ We need to help them parameterize the report for different continents!
 
 
 
-<div class="countdown" id="timer_60c89878" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_62a703a2" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div> 
 
@@ -1388,7 +1388,7 @@ We've update instance of "Americas" in the code. But what about for the names of
 * Update the table code to get the correct continent name.
 
 
-<div class="countdown" id="timer_60c898cf" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_62a704a1" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div> 
 
@@ -1483,7 +1483,7 @@ rmarkdown::render(input = "Country_Report_Final.Rmd",
 
 ```r
 rmarkdown::render(input = "Country_Report_Final.Rmd", 
-                  output_file = "Jamaica_CountryReport.html", 
+                  output_file = "newreports/Jamaica_CountryReport.html", 
                   params = list(country = "Jamaica", continent = "Americas"))
 ```
 
@@ -1519,7 +1519,7 @@ report_countries &lt;- data.frame(country = c("Bulgaria", "Burkina Faso", "Cambo
 for (i in 1:nrow(report_countries)){
 
 rmarkdown::render(input = "Country_Report_Final.Rmd", 
-                  output_file = paste0("new_reports/",report_countries[i, "country"],"_Country_Report.html"),
+                  output_file = paste0("newreports/", report_countries[i, "country"],"_Country_Report.html"),
                   params = list(country = report_countries[i, "country"],
                                 continent = report_countries[i, "continent"]))
 

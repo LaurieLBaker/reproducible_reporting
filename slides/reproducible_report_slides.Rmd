@@ -1289,7 +1289,7 @@ rmarkdown::render(input = "Country_Report_Final.Rmd",
 ```{r, eval = FALSE}
 
 rmarkdown::render(input = "Country_Report_Final.Rmd", 
-                  output_file = "Jamaica_CountryReport.html", 
+                  output_file = "newreports/Jamaica_CountryReport.html", 
                   params = list(country = "Jamaica", continent = "Americas"))
 
 ```
@@ -1326,7 +1326,7 @@ report_countries <- data.frame(country = c("Bulgaria", "Burkina Faso", "Cambodia
 for (i in 1:nrow(report_countries)){
 
 rmarkdown::render(input = "Country_Report_Final.Rmd", 
-                  output_file = paste0("new_reports/",report_countries[i, "country"],"_Country_Report.html"),
+                  output_file = paste0("newreports/", report_countries[i, "country"],"_Country_Report.html"),
                   params = list(country = report_countries[i, "country"],
                                 continent = report_countries[i, "continent"]))
 
